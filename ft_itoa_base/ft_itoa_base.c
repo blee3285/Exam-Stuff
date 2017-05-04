@@ -6,14 +6,14 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:00:54 by blee              #+#    #+#             */
-/*   Updated: 2017/05/02 14:54:32 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/03 17:11:18 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_strlen(int value, int base)
+int		ft_strlen(int value, int base)
 {
 	int i;
 
@@ -29,10 +29,27 @@ int	ft_strlen(int value, int base)
 char	next_digit(int value, int base)
 {
 	char	num[] = "0123456789ABCDEF";
-	int	i;
+	int		i;
 
 	i = value % base;
 	return (num[i]);
+}
+
+char	*int_min(void)
+{
+	int		i;
+	char	*min;
+	char	str[] = "-2147483648";
+
+	i = 0;
+	min = (char*)malloc(sizeof(char) * (12));
+	while (str[i])
+	{
+		min[i] = str[i];
+		i++;
+	}
+	min[i] = '\0';
+	return (min);
 }
 
 char    *ft_itoa_base(int value, int base)
@@ -42,10 +59,19 @@ char    *ft_itoa_base(int value, int base)
 	int	neg;
 
 	neg = 0;
-	if ((value < 0) && (base == 10))
+	if (base < 2 || base > 16)
+		return ("bad base");
+	if (value < 0)
 	{
-		neg = 1;
-		value *= -1;
+		if (base == 10)
+		{
+			neg = 1;
+			if (value == -2147483648)
+				return (int_min());
+			value *= -1;
+		}
+		else
+			value *= -1;
 	}
 	len = ft_strlen(value, base);
 	if (neg)
