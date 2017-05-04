@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:00:54 by blee              #+#    #+#             */
-/*   Updated: 2017/05/03 17:11:18 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/04 14:53:03 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		ft_strlen(int value, int base)
 	int i;
 
 	i = 0;
+	if (value == 0)
+		return (1);
 	while (value)
 	{
 		value /= base;
@@ -78,6 +80,11 @@ char    *ft_itoa_base(int value, int base)
 		len++;
 	str = (char*)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
+	if (value == 0)
+	{
+		str[0] = '0';
+		return (str);
+	}
 	while (value && (len > -1))
 	{
 		len--;
