@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:24:47 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 15:30:29 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/07 15:44:55 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,22 +69,33 @@ int		brackets(char *str)
 {
 	int		i;
 	char	*temp;
+	char	ending;
 	char	hold[ft_strlen(str) + 1];
 
 	i = 0;
 	temp = str;
 	*hold = 0;
+	ending = 0;
 	while (*temp)
 	{
 		if (open_b(*temp))
 		{
 			hold[i] = *temp;
 			i++;
-		}
-		if (close_b(*temp) == hold[i - 1] && temp > str)
-		{
-			i--;
 			hold[i] = 0;
+		}
+		ending = close_b(*temp);
+		if (ending)
+		{
+			if (temp == str)
+				return (0);
+			if (ending != hold[i - 1])
+				return (0);
+			if (ending == hold[i - 1])
+			{
+				i--;
+				hold[i] = 0;
+			}
 		}
 		temp++;
 	}
