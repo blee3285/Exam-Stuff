@@ -1,4 +1,3 @@
-/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   brackets.c                                         :+:      :+:    :+:   */
@@ -6,7 +5,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:24:47 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 15:44:55 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/07 16:18:24 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +98,6 @@ int		brackets(char *str)
 		}
 		temp++;
 	}
-	temp--;
 	if (*hold == 0)
 		return (1);
 	return (0);
@@ -115,12 +113,13 @@ int		main(int ac, char **av)
 		while (i < ac)
 		{
 			if (brackets(av[i]))
-				ft_putstr("OK");
+				ft_putstr("OK\n");
 			else
-				ft_putstr("Error");
+				ft_putstr("Error\n");
 			i++;
 		}
 	}
-	ft_putstr("\n");
+	else
+		ft_putstr("\n");
 	return (0);
 }
