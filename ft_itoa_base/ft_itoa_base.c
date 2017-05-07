@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:00:54 by blee              #+#    #+#             */
-/*   Updated: 2017/05/04 14:53:03 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/07 15:34:08 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char	*int_min(void)
 char    *ft_itoa_base(int value, int base)
 {
 	char	*str;
-	int	len;
-	int	neg;
+	int		len;
+	int		neg;
 
 	neg = 0;
 	if (base < 2 || base > 16)
