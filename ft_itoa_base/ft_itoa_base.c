@@ -5,17 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 13:00:54 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 15:34:08 by blee             ###   ########.fr       */
+/*   Created: 2017/05/07 16:29:35 by blee              #+#    #+#             */
+/*   Updated: 2017/05/07 17:27:42 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
-int		ft_strlen(int value, int base)
+int		ft_numlen(int value, int base)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (value == 0)
@@ -28,23 +27,30 @@ int		ft_strlen(int value, int base)
 	return (i);
 }
 
-char	next_digit(int value, int base)
+void	build_str(char **str, int value, int base, int len)
 {
 	char	num[] = "0123456789ABCDEF";
-	int		i;
+	char	*temp;
 
-	i = value % base;
-	return (num[i]);
+	temp = *str;
+	while (value && (len > -1))
+	{
+		len--;
+		temp[len] = num[value % base];
+		value /= base;
+	}
 }
 
-char	*int_min(void)
+char	*ft_strdup(char	*str)
 {
 	int		i;
 	char	*min;
-	char	str[] = "-2147483648";
 
 	i = 0;
-	min = (char*)malloc(sizeof(char) * (12));
+	while (str[i])
+		i++;
+	min = (char*)malloc(sizeof(char) * (i + 1));
+	i = 0;
 	while (str[i])
 	{
 		min[i] = str[i];
@@ -54,49 +60,31 @@ char	*int_min(void)
 	return (min);
 }
 
-char    *ft_itoa_base(int value, int base)
+char	*ft_itoa_base(int value, int base)
 {
 	char	*str;
 	int		len;
 	int		neg;
 
-	neg = 0;
-	if (base < 2 || base > 16)
-		return ("bad base");
+	neg = value;
+	if ((base < 2 || base > 16) || (value == -2147483648 && base != 10))
+		return (ft_strdup("Error"));
 	if (value < 0)
 	{
-		if (base == 10)
-		{
-			neg = 1;
-			if (value == -2147483648)
-				return (int_min());
-			value *= -1;
-		}
+		if (base == 10 && value == -2147483648)
+			return (ft_strdup("-2147483648"));
 		else
 			value *= -1;
 	}
-	len = ft_strlen(value, base);
-	if (neg)
+	if (value == 0)
+		return (ft_strdup("0"));
+	len = ft_numlen(value, base);
+	if (neg < 0)
 		len++;
 	str = (char*)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
-	if (value == 0)
-	{
-		str[0] = '0';
-		return (str);
-	}
-	while (value && (len > -1))
-	{
-		len--;
-		str[len] = next_digit(value, base);
-		value /= base;
-	}
-	if (neg)
-	{
-		len--;
-		str[len] = '-';
-	}
-	if (len != 0)
-		return ("error");
+	build_str(&str, value, base, len);
+	if (neg < 0)
+		str[0] = '-';
 	return (str);
 }
