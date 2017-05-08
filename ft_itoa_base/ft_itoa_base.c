@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 16:29:35 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 17:27:42 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/07 17:47:13 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,7 @@ int		ft_numlen(int value, int base)
 	return (i);
 }
 
-void	build_str(char **str, int value, int base, int len)
-{
-	char	num[] = "0123456789ABCDEF";
-	char	*temp;
-
-	temp = *str;
-	while (value && (len > -1))
-	{
-		len--;
-		temp[len] = num[value % base];
-		value /= base;
-	}
-}
-
-char	*ft_strdup(char	*str)
+char	*ft_strdup(char *str)
 {
 	int		i;
 	char	*min;
@@ -58,6 +44,24 @@ char	*ft_strdup(char	*str)
 	}
 	min[i] = '\0';
 	return (min);
+}
+
+void	build_str(char **str, int value, int base, int len)
+{
+	char	*num;
+	char	*temp;
+
+	num = ft_strdup("0123456789ABCDEF");
+	temp = *str;
+	while (value && (len > -1))
+	{
+		len--;
+		temp[len] = num[value % base];
+		value /= base;
+	}
+	if (len != 0)
+		temp[0] = '-';
+	free(num);
 }
 
 char	*ft_itoa_base(int value, int base)
@@ -84,7 +88,5 @@ char	*ft_itoa_base(int value, int base)
 	str = (char*)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
 	build_str(&str, value, base, len);
-	if (neg < 0)
-		str[0] = '-';
 	return (str);
 }
