@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 16:29:35 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 17:47:13 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/07 17:59:03 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ char	*ft_strdup(char *str)
 	return (min);
 }
 
-void	build_str(char **str, int value, int base, int len)
+char	*build_str(int value, int base, int len)
 {
 	char	*num;
 	char	*temp;
 
 	num = ft_strdup("0123456789ABCDEF");
-	temp = *str;
+	temp = (char*)malloc(sizeof(char) * (len + 1));
+	temp[len] = '\0';
 	while (value && (len > -1))
 	{
 		len--;
@@ -62,6 +63,7 @@ void	build_str(char **str, int value, int base, int len)
 	if (len != 0)
 		temp[0] = '-';
 	free(num);
+	return (temp);
 }
 
 char	*ft_itoa_base(int value, int base)
@@ -70,7 +72,9 @@ char	*ft_itoa_base(int value, int base)
 	int		len;
 	int		neg;
 
-	neg = value;
+	neg = 0;
+	if (base == 10)
+		neg = value;
 	if ((base < 2 || base > 16) || (value == -2147483648 && base != 10))
 		return (ft_strdup("Error"));
 	if (value < 0)
@@ -85,8 +89,6 @@ char	*ft_itoa_base(int value, int base)
 	len = ft_numlen(value, base);
 	if (neg < 0)
 		len++;
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	str[len] = '\0';
-	build_str(&str, value, base, len);
+	str = build_str(value, base, len);
 	return (str);
 }
