@@ -6,13 +6,13 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 16:29:35 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 17:59:03 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/08 17:21:21 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_numlen(int value, int base)
+int		ft_numlen(long long value, int base)
 {
 	int		i;
 
@@ -46,7 +46,7 @@ char	*ft_strdup(char *str)
 	return (min);
 }
 
-char	*build_str(int value, int base, int len)
+char	*build_str(long long value, int base, int len)
 {
 	char	*num;
 	char	*temp;
@@ -68,27 +68,24 @@ char	*build_str(int value, int base, int len)
 
 char	*ft_itoa_base(int value, int base)
 {
-	char	*str;
-	int		len;
-	int		neg;
+	long long	num;
+	char		*str;
+	int			len;
+	int			neg;
 
+	num = value;
 	neg = 0;
 	if (base == 10)
 		neg = value;
-	if ((base < 2 || base > 16) || (value == -2147483648 && base != 10))
+	if (base < 2 || base > 16)
 		return (ft_strdup("Error"));
-	if (value < 0)
-	{
-		if (base == 10 && value == -2147483648)
-			return (ft_strdup("-2147483648"));
-		else
-			value *= -1;
-	}
-	if (value == 0)
+	if (num < 0)
+			num *= -1;
+	if (num == 0)
 		return (ft_strdup("0"));
-	len = ft_numlen(value, base);
+	len = ft_numlen(num, base);
 	if (neg < 0)
 		len++;
-	str = build_str(value, base, len);
+	str = build_str(num, base, len);
 	return (str);
 }
