@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 16:29:35 by blee              #+#    #+#             */
-/*   Updated: 2017/05/08 17:21:21 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/10 17:01:16 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_itoa_base(int value, int base)
 	if (base < 2 || base > 16)
 		return (ft_strdup("Error"));
 	if (num < 0)
-			num *= -1;
+		num *= -1;
 	if (num == 0)
 		return (ft_strdup("0"));
 	len = ft_numlen(num, base);
