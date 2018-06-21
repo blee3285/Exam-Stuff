@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 17:29:53 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 17:29:55 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/08 15:49:56 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ int		brackets(char *str)
 		{
 			if (temp == str)
 				return (0);
-			if (ending != hold[i - 1])
-				return (0);
 			if (ending == hold[i - 1])
 			{
 				i--;
 				hold[i] = 0;
 			}
+			else
+				return (0);
 		}
 		temp++;
 	}

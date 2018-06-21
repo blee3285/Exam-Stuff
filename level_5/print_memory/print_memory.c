@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 18:46:46 by blee              #+#    #+#             */
-/*   Updated: 2017/05/07 18:46:49 by blee             ###   ########.fr       */
+/*   Updated: 2017/05/30 15:28:54 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ int	main(void)
 {
 	int	tab[10] = {0, 23, 150, 255,
 					12, 16, 21, 42};
-
+	char str[] = "ABCDEFG";
 	print_memory(tab, sizeof(tab));
+	ft_putchar('\n');
+	print_memory(str, sizeof(str));
 	return (0);
 }

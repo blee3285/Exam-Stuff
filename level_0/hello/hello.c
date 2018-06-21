@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hello.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/02 14:42:42 by blee              #+#    #+#             */
-/*   Updated: 2017/05/02 14:46:38 by blee             ###   ########.fr       */
+/*   Created: 2018/06/15 17:12:07 by blee              #+#    #+#             */
+/*   Updated: 2018/06/15 17:16:05 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "unistd.h"
 
-char    *ft_itoa_base(int value, int base);
-
-int	main(int ac, char **av)
+int		main()
 {
-	char *str;
-
-	if (ac == 3)
-	{
-		str = ft_itoa_base(atoi(av[1]), atoi(av[2]));
-		printf("%s\n", str);
-	}
+	write(1, "Hello World!\n", 13);
 	return (0);
 }
