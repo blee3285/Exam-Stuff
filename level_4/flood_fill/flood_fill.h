@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 18:33:09 by blee              #+#    #+#             */
-/*   Updated: 2019/01/23 18:45:46 by blee             ###   ########.fr       */
+/*   Updated: 2019/01/28 13:50:16 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include "unistd.h"
 
 typedef struct	s_point
 {

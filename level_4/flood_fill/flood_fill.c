@@ -6,15 +6,15 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 18:17:12 by blee              #+#    #+#             */
-/*   Updated: 2019/01/23 18:37:06 by blee             ###   ########.fr       */
+/*   Updated: 2019/01/28 13:24:24 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "flood_fill.h"
 
-void	filler(char **tab, t_point size, int x, int y, char c)
+void	filler(char ***tab, t_point size, int x, int y, char c)
 {
-	char	*temp;
+	char	**temp;
 
 	temp = *tab;
 	if (x < 0 || x > size.x || y < 0 || y > size.y)
@@ -38,5 +38,5 @@ void	flood_fill(char **tab, t_point size, t_point begin)
 
 	temp = *tab;
 	c = tab[begin.y][begin.x];
-	filler(tab, size, begin.x, begin.y, c);
+	filler(&tab, size, begin.x, begin.y, c);
 }
