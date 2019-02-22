@@ -6,7 +6,7 @@
 /*   By: blee <blee@student.42.us.org>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:36:22 by blee              #+#    #+#             */
-/*   Updated: 2019/02/20 17:15:53 by blee             ###   ########.fr       */
+/*   Updated: 2019/02/22 15:38:40 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	fprime(int num)
 	int		mod;
 
 	mod = 2;
-	while (num > mod)
+	while ((num / mod) >= mod)
 	{
 		if (num % mod == 0)
 		{
