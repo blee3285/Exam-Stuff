@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_power_of_2.c                                    :+:      :+:    :+:   */
+/*   print_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blee <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 16:56:41 by blee              #+#    #+#             */
-/*   Updated: 2019/10/16 17:08:29 by blee             ###   ########.fr       */
+/*   Created: 2019/10/16 17:18:50 by blee              #+#    #+#             */
+/*   Updated: 2019/10/16 17:53:12 by blee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     is_power_of_2(unsigned int n)
-{
-    unsigned int    i = 1;
+#include <unistd.h>
 
-    while (i <= n)
+void    ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
+void    print_bits(unsigned char octet)
+{
+    int     i;
+    char    c;
+
+    i = 128;
+    c = 0;
+    while (i > 0)
     {
-        if (i == n)
-            return (1);
-        i = i * 2;
+        c = octet / i;
+        octet = octet % i;
+        ft_putchar(c + '0');
+        i /= 2;
     }
-    return (0);
 }
